@@ -4,6 +4,7 @@ const crypto = require('crypto')
 const Jimp = require('jimp');
 const app = express()
 const host='https://api.shrinkimg.online'
+const path = require('path')
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -24,9 +25,8 @@ app.use (function (error, req, res, next){
 
 const port = 5000
 
-app.get('/', (req, res) => {
-  res.send('This is ShrinkImg.Online API!')
-})
+app.use( express.static('./static'))
+
 app.use('/images', express.static('./compressed_images'))
 
 
