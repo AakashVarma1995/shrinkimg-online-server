@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const crypto = require('crypto')
 const Jimp = require('jimp');
 const app = express()
+const host='https://api.shrinkimg.online'
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -44,7 +45,7 @@ app.post('/compress', (req,res)=>{
           .write( outputPath+ opFile)
       })
       .then(()=>{
-        res.send({url:'http://localhost:5000/images/'+opFile, file_name:opFile})
+        res.send({url:host+'/images/'+opFile, file_name:opFile})
       })
       .catch(err => {
         console.log(err.toString())
@@ -65,5 +66,5 @@ app.post('/compress', (req,res)=>{
 
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`API Server is listening at http://localhost:${port}`)
 })
